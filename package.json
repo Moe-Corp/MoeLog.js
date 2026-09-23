@@ -1,0 +1,26 @@
+{
+  "name": "moelog-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "sandbox/*"
+  ],
+  "scripts": {
+    "build": "bun run scripts/build.ts",
+    "daemon": "node packages/node/dist/daemon.js",
+    "clean": "rm -rf packages/*/dist",
+    "typecheck": "tsc --noEmit",
+    "e2e": "bun run --filter \"*sandbox*\" e2e",
+    "publicar": "bun run scripts/publicar.ts",
+    "publicar:ensayo": "bun run scripts/publicar.ts --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "@types/bun": "^1.4.0"
+  }
+}
