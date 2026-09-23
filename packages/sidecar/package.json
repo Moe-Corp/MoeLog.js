@@ -1,0 +1,55 @@
+{
+  "name": "@moecorp/moelog-sidecar",
+  "version": "0.0.2-alpha.1",
+  "description": "El canal sidecar de MoeLog: protocolo, transporte, daemon y CLI. Compartido por todos los SDK de servidor.",
+  "keywords": [
+    "observability",
+    "logging",
+    "errors",
+    "monitoring",
+    "sidecar",
+    "moelog"
+  ],
+  "license": "AGPL-3.0-only",
+  "homepage": "https://github.com/Moe-Corp/MoeLog.js/tree/main/packages/sidecar#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moe-Corp/MoeLog.js.git",
+    "directory": "packages/sidecar"
+  },
+  "bugs": {
+    "url": "https://github.com/Moe-Corp/MoeLog.js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./daemon": {
+      "import": "./dist/daemon.js"
+    },
+    "./cli": {
+      "import": "./dist/cli.js"
+    }
+  },
+  "bin": {
+    "moelog": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@moecorp/moelog-core": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "./src/**"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
