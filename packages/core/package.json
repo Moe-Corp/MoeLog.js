@@ -1,0 +1,41 @@
+{
+  "name": "@moecorp/moelog-core",
+  "version": "0.0.2-alpha.1",
+  "description": "Microkernel de MoeLog: ring buffer, scope, hooks y serializacion MLWP. Cero dependencias.",
+  "keywords": [
+    "observability",
+    "logging",
+    "errors",
+    "monitoring",
+    "sidecar",
+    "moelog"
+  ],
+  "license": "AGPL-3.0-only",
+  "homepage": "https://github.com/Moe-Corp/MoeLog.js/tree/main/packages/core#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moe-Corp/MoeLog.js.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/Moe-Corp/MoeLog.js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "./src/**"
+  ]
+}
