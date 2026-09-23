@@ -3,3 +3,4 @@ dist/
 .moelog/
 *.log
 packages/*/LICENSE
+PLAN.md
