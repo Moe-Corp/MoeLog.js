@@ -1,0 +1,50 @@
+{
+  "name": "@moecorp/moelog-node",
+  "version": "0.0.2-alpha.1",
+  "description": "SDK de MoeLog para Node. Entrega los eventos a un sidecar fuera del proceso.",
+  "keywords": [
+    "observability",
+    "logging",
+    "errors",
+    "monitoring",
+    "sidecar",
+    "moelog"
+  ],
+  "license": "AGPL-3.0-only",
+  "homepage": "https://github.com/Moe-Corp/MoeLog.js/tree/main/packages/node#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moe-Corp/MoeLog.js.git",
+    "directory": "packages/node"
+  },
+  "bugs": {
+    "url": "https://github.com/Moe-Corp/MoeLog.js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "moelog": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@moecorp/moelog-core": "workspace:*",
+    "@moecorp/moelog-sidecar": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "./src/**"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
