@@ -1,0 +1,50 @@
+{
+  "name": "@moecorp/moelog-bun",
+  "version": "0.0.2-alpha.1",
+  "description": "SDK de MoeLog para Bun. Entrega los eventos a un sidecar fuera del proceso.",
+  "keywords": [
+    "observability",
+    "logging",
+    "errors",
+    "monitoring",
+    "sidecar",
+    "moelog"
+  ],
+  "license": "AGPL-3.0-only",
+  "homepage": "https://github.com/Moe-Corp/MoeLog.js/tree/main/packages/bun#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moe-Corp/MoeLog.js.git",
+    "directory": "packages/bun"
+  },
+  "bugs": {
+    "url": "https://github.com/Moe-Corp/MoeLog.js/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "moelog": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@moecorp/moelog-core": "workspace:*",
+    "@moecorp/moelog-sidecar": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "./src/**"
+  ],
+  "engines": {
+    "bun": ">=1.1"
+  }
+}
