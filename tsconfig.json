@@ -32,6 +32,8 @@
   },
   "include": [
     "packages/*/src/**/*.ts",
+    "packages/*/test/**/*.ts",
+    "test/**/*.ts",
     "scripts/**/*.ts"
   ],
   "exclude": [

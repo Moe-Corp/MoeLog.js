@@ -15,15 +15,9 @@ concurrency:
 
 jobs:
   check:
-    name: typecheck, build, e2e (node ${{ matrix.node }})
+    name: typecheck, build, test
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      fail-fast: false
-      matrix:
-        # 22 is the lowest line that runs sandbox/node-app/e2e.ts: it executes
-        # TypeScript directly, which needs type stripping without a flag.
-        node: ['22', 'lts/*']
 
     steps:
       - uses: actions/checkout@v7
@@ -32,9 +26,11 @@ jobs:
         with:
           bun-version: 1.4.4
 
+      # The failure-mode tests run every scenario under Node as well as Bun,
+      # and the sidecar itself runs on Node.
       - uses: actions/setup-node@v7
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 26
 
       - run: bun install --frozen-lockfile
 
@@ -42,11 +38,5 @@ jobs:
 
       - run: bun run build
 
-      # The `moelog` bin of each package points into dist/, which did not exist
-      # during the first install, so bun skipped the link. The e2e scripts call
-      # node_modules/.bin/moelog, so link again now that dist/ is there.
-      - name: Link workspace bins
-        run: bun install --frozen-lockfile
-
-      # Both sandboxes: bun-app under Bun, node-app under the Node of the matrix.
-      - run: bun run e2e
+      # Unit tests run on the source; test/failure-modes.test.ts runs on the build.
+      - run: bun run test

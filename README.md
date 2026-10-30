@@ -62,9 +62,9 @@ would have to lie to one of them:
 | Resulting signal | `app.fatal` | error event, no alert |
 | Sidecar binary | the same `process.execPath` | looks for a real `node` on PATH, falls back to Bun |
 
-That difference is verified by the repository's two e2e suites: the same scenario yields
-`app.fatal` on Node and an alert-free event on Bun, and each suite asserts what its runtime
-actually does.
+That difference is verified by [`test/failure-modes.test.ts`](test/failure-modes.test.ts): the
+same scenario yields `app.fatal` on Node and an alert-free event on Bun, and the test asserts what
+each runtime actually does.
 
 ## What it detects
 
@@ -188,14 +188,13 @@ The ingest API and the dashboard live in their own repository:
 a `bun run dev`; its README covers the rest.
 
 This SDK does not depend on it. Without a `server` option the sidecar keeps writing the local
-NDJSON, and everything in this repository — including both e2e suites — works with no server at
+NDJSON, and everything in this repository — including the test suite — works with no server at
 all.
 
-To exercise the two together, run the server and point a sandbox at it:
+To exercise the two together, run the server and point any app using the SDK at it:
 
 ```bash
-cd sandbox/bun-app
-MOELOG_SERVER=http://localhost:3000 MOELOG_KEY=mlk_pub_dev bun run e2e
+MOELOG_SERVER=http://localhost:3000 MOELOG_KEY=mlk_pub_dev bun run index.ts
 ```
 
 Open the dashboard while it runs: errors show up on their own, no reload.
@@ -244,20 +243,20 @@ packages/sidecar/src/    protocol · paths · markers · transport · health
   sdk.ts                 defineSdk(): the factory the runtimes are built on
 packages/node/src/       what Node does differently (~100 lines)
 packages/bun/src/        what Bun does differently (~120 lines)
-sandbox/bun-app/         test server + e2e of the 7 scenarios
-sandbox/node-app/        e2e of the 7 scenarios under Node
+packages/*/test/         unit tests, on the source
+test/                    failure-mode tests: every way an app dies, under Node and Bun, on the build
 ```
 
 ## Development
 
 ```bash
 bun run build              # builds the four packages
-bun run typecheck          # tsc --noEmit
+bun run typecheck          # tsc --noEmit, tests included
+bun run test               # unit + failure-mode tests (build first: the latter run on dist/)
 bun run publicar:ensayo    # dry run: shows exactly what would be published
-
-cd sandbox/bun-app  && bun run e2e     # 7/7 under Bun
-cd sandbox/node-app && npm run e2e     # 7/7 under Node
 ```
+
+The failure-mode tests need `node` on the PATH: every scenario runs under Node and under Bun.
 
 ## Related repositories
 

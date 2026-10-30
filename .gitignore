@@ -4,3 +4,5 @@ dist/
 *.log
 packages/*/LICENSE
 PLAN.md
+# Local usage playground, not part of the repository
+sandbox/

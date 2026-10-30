@@ -46,18 +46,6 @@
         "@moecorp/moelog-core": "workspace:*",
       },
     },
-    "sandbox/bun-app": {
-      "name": "moelog-sandbox-bun",
-      "dependencies": {
-        "@moecorp/moelog-bun": "workspace:*",
-      },
-    },
-    "sandbox/node-app": {
-      "name": "moelog-sandbox-node",
-      "dependencies": {
-        "@moecorp/moelog-node": "workspace:*",
-      },
-    },
   },
   "packages": {
     "@moecorp/moelog-bun": ["@moecorp/moelog-bun@workspace:packages/bun"],
@@ -73,10 +61,6 @@
     "@types/node": ["@types/node@22.20.4", "", { "dependencies": { "undici-types": "~6.21.0" } }, "sha512-zJRE40jpHtKqE/C4fgHrAKQLJuSpzEnP9ff9Y7YtoR3Wd2pwqzlekDeEuUQXjRd+QCYnVnNwuJYmhdk9XV8gvA=="],
 
     "bun-types": ["bun-types@1.4.2", "", { "dependencies": { "@types/node": "*" } }, "sha512-bxV1FgK7yBIzjRe5zBozIM4Bem11ZJcCXSrjWRG3YWLt8yFDePu4cLjpebO8OvPeIE9trbyPF4fuj3Cia4Fj3w=="],
-
-    "moelog-sandbox-bun": ["moelog-sandbox-bun@workspace:sandbox/bun-app"],
-
-    "moelog-sandbox-node": ["moelog-sandbox-node@workspace:sandbox/node-app"],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
