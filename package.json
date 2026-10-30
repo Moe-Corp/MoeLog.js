@@ -3,15 +3,14 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*",
-    "sandbox/*"
+    "packages/*"
   ],
   "scripts": {
     "build": "bun run scripts/build.ts",
     "daemon": "node packages/node/dist/daemon.js",
     "clean": "rm -rf packages/*/dist",
     "typecheck": "tsc --noEmit",
-    "e2e": "bun run --filter \"*sandbox*\" e2e",
+    "test": "bun test",
     "publicar": "bun run scripts/publicar.ts",
     "publicar:ensayo": "bun run scripts/publicar.ts --dry-run"
   },
