@@ -15,7 +15,9 @@ concurrency:
 
 jobs:
   check:
-    name: typecheck, build, test
+    # Keep this name stable: the main ruleset requires this check by name, so
+    # renaming it would leave every PR waiting for a check that never arrives.
+    name: checks
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -37,6 +39,9 @@ jobs:
       - run: bun run typecheck
 
       - run: bun run build
+
+      # Byte budget per package (.size-limit.js): over the limit fails the PR.
+      - run: bun run size
 
       # Unit tests run on the source; test/failure-modes.test.ts runs on the build.
       - run: bun run test
