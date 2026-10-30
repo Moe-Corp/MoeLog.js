@@ -253,6 +253,7 @@ test/                    failure-mode tests: every way an app dies, under Node a
 bun run build              # builds the four packages
 bun run typecheck          # tsc --noEmit, tests included
 bun run test               # unit + failure-mode tests (build first: the latter run on dist/)
+bun run size               # byte budget per package, as CI enforces it (build first)
 bun run publicar:ensayo    # dry run: shows exactly what would be published
 ```
 
