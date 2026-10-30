@@ -1,0 +1,43 @@
+name: Release
+
+# On every push to main, release-please opens or updates the release PR. When
+# that PR is merged, it tags the version and creates the GitHub release.
+# See RELEASING.md.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write # release-please labels its PRs
+
+# Two pushes in a row must not race to update the same release PR.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      version: ${{ steps.release.outputs.version }}
+
+    steps:
+      # Pinned to a commit: this job can write to the repository.
+      - id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      # release-please marks every 0.x release as a pre-release on GitHub. A
+      # version without a pre-release suffix closes a milestone and is stable.
+      - name: Mark a stable release as latest
+        if: steps.release.outputs.release_created == 'true' && !contains(steps.release.outputs.version, '-')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "${{ steps.release.outputs.tag_name }}" --repo "${{ github.repository }}" --prerelease=false --latest
