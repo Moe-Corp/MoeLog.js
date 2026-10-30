@@ -8,7 +8,7 @@
 import { defaultRuntime, defineSdk, type SdkOptions } from '@moecorp/moelog-sidecar'
 import { globalErrors, type RejectionMode } from './integrations/globalErrors.ts'
 
-export const VERSION = '0.0.2-alpha.1'
+export const VERSION = '0.0.2-alpha.1' // x-release-please-version
 
 export interface NodeOptions extends SdkOptions {
   /** See `RejectionMode`. Defaults to 'native': Node's semantics are untouched. */

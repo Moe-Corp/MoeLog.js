@@ -3,7 +3,7 @@
 The JavaScript/TypeScript SDK for **MoeLog**: logs, errors and process health, at almost no cost
 inside your application.
 
-> **Status: alpha (0.0.2-alpha.1).** The protocol may change. This repository holds the
+> **Status: alpha (0.0.2-alpha.1).** The protocol may change. This repository holds the <!-- x-release-please-version -->
 > JavaScript SDK only; the ingest API and dashboard live in
 > [MoeLog.server](https://github.com/Moe-Corp/MoeLog.server).
 
@@ -258,6 +258,8 @@ bun run publicar:ensayo    # dry run: shows exactly what would be published
 ```
 
 The failure-mode tests need `node` on the PATH: every scenario runs under Node and under Bun.
+
+Versions, the changelog and releases are automated: see [RELEASING.md](RELEASING.md).
 
 ## Related repositories
 

@@ -9,7 +9,7 @@ import { defineSdk, type SdkOptions } from '@moecorp/moelog-sidecar'
 import { globalErrors, type RejectionMode } from './integrations/globalErrors.ts'
 import { bunRuntime } from './runtime.ts'
 
-export const VERSION = '0.0.2-alpha.1'
+export const VERSION = '0.0.2-alpha.1' // x-release-please-version
 
 export interface BunOptions extends SdkOptions {
   /** See `RejectionMode`. Defaults to 'capture': on Bun it is the only way to see them. */
